@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import { Header, Icon, Badge } from "react-native-elements";
-import { View, Text, StyeSheet, Alert } from "react-native";
+import { View } from "react-native";
 import db from "../config";
 
 export default class MyHeader extends Component {
@@ -37,8 +37,8 @@ export default class MyHeader extends Component {
           onPress={() => this.props.navigation.navigate("Notification")}
         />
         <Badge
-          value={this.state.value - 1}
-          containerStyle={{ position: "absolute", top: -4, right: -4 }}
+          value={this.state.value}
+          containerStyle={{ position: "absolute", top: -7, right: -10 }}
         />
       </View>
     );
@@ -59,8 +59,8 @@ export default class MyHeader extends Component {
         centerComponent={{
           text: this.props.title,
           style: {
-            color: "black",
-            fontSize: 30,
+            color: "white",
+            fontSize: 28,
             fontWeight: "bold",
             marginTop: -5,
           },

@@ -3,11 +3,10 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ScrollView,
   FlatList,
   StyleSheet,
 } from "react-native";
-import { Card, Icon, ListItem } from "react-native-elements";
+import { Icon, ListItem } from "react-native-elements";
 import MyHeader from "../components/MyHeader.js";
 import firebase from "firebase";
 import db from "../config.js";
@@ -67,12 +66,12 @@ export default class MyReceivedBooksScreen extends Component {
 
   render() {
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: "#deeeed" }}>
         <MyHeader title="Received Books" navigation={this.props.navigation} />
         <View style={{ flex: 1 }}>
           {this.state.receivedBooksList.length === 0 ? (
             <View style={styles.subContainer}>
-              <Text style={{ fontSize: 20 }}>List Of All Received Books</Text>
+              <Text style={{ fontSize: 25 }}>List Of All Received Books</Text>
             </View>
           ) : (
             <FlatList

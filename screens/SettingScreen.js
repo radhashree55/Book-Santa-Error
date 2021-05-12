@@ -3,13 +3,10 @@ import {
   View,
   Text,
   TextInput,
-  KeyboardAvoidingView,
   StyleSheet,
-  ScrollView,
   TouchableOpacity,
   Alert,
 } from "react-native";
-import { Card } from "react-native-elements";
 import MyHeader from "../components/MyHeader";
 import db from "../config";
 import firebase from "firebase";
@@ -69,19 +66,17 @@ export default class SettingScreen extends Component {
         <View style={{ flex: 0.12 }}>
           <MyHeader title="Settings" navigation={this.props.navigation} />
         </View>
-
         <View style={styles.formContainer}>
           <View
             style={{
               flex: 0.66,
-              padding: RFValue(10),
             }}
           >
             <Text style={styles.label}>First Name </Text>
             <TextInput
               style={styles.formTextInput}
               placeholder={"First Name"}
-              maxLength={12}
+              placeholderTextColor="black"
               onChangeText={(text) => {
                 this.setState({
                   firstName: text,
@@ -89,12 +84,11 @@ export default class SettingScreen extends Component {
               }}
               value={this.state.firstName}
             />
-
             <Text style={styles.label}>Last Name </Text>
             <TextInput
               style={styles.formTextInput}
               placeholder={"Last Name"}
-              maxLength={12}
+              placeholderTextColor="black"
               onChangeText={(text) => {
                 this.setState({
                   lastName: text,
@@ -102,11 +96,11 @@ export default class SettingScreen extends Component {
               }}
               value={this.state.lastName}
             />
-
             <Text style={styles.label}>Contact </Text>
             <TextInput
               style={styles.formTextInput}
               placeholder={"Contact"}
+              placeholderTextColor="black"
               maxLength={10}
               keyboardType={"numeric"}
               onChangeText={(text) => {
@@ -116,11 +110,11 @@ export default class SettingScreen extends Component {
               }}
               value={this.state.contact}
             />
-
             <Text style={styles.label}>Address </Text>
             <TextInput
               style={styles.formTextInput}
               placeholder={"Address"}
+              placeholderTextColor="black"
               multiline={true}
               onChangeText={(text) => {
                 this.setState({
@@ -161,7 +155,6 @@ const styles = StyleSheet.create({
     fontSize: RFValue(18),
     color: "#717D7E",
     fontWeight: "bold",
-    padding: RFValue(10),
     marginLeft: RFValue(20),
   },
   formTextInput: {
@@ -169,14 +162,13 @@ const styles = StyleSheet.create({
     height: RFValue(50),
     padding: RFValue(10),
     borderWidth: 1,
-    borderRadius: 2,
     borderColor: "grey",
-    marginBottom: RFValue(20),
+    marginBottom: RFValue(10),
     marginLeft: RFValue(20),
   },
   button: {
     width: "75%",
-    height: RFValue(60),
+    height: RFValue(40),
     justifyContent: "center",
     alignItems: "center",
     borderRadius: RFValue(50),
@@ -189,12 +181,10 @@ const styles = StyleSheet.create({
     shadowOpacity: 0.44,
     shadowRadius: 10.32,
     elevation: 16,
-    marginTop: RFValue(20),
   },
   buttonView: {
-    flex: 0.22,
+    flex: 0.4,
     alignItems: "center",
-    marginTop: RFValue(100),
   },
   buttonText: {
     fontSize: RFValue(23),

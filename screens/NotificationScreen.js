@@ -1,13 +1,5 @@
 import React, { Component } from "react";
-import {
-  SafeAreaView,
-  View,
-  StyleSheet,
-  Text,
-  FlatList,
-  TouchableOpacity,
-  Image,
-} from "react-native";
+import { View, StyleSheet, Text, Image } from "react-native";
 import { ListItem, Icon } from "react-native-elements";
 import firebase from "firebase";
 import db from "../config";
@@ -74,7 +66,7 @@ export default class NotificationScreen extends Component {
           {this.state.allNotification.length === 0 ? (
             <View style={styles.imageView}>
               <Image source={require("../assets/Notification.png")} />
-              <Text style={{ fontSize: 25 }}>You have no notifications</Text>
+              <Text style={{ fontSize: 25 }}>No new Notifications</Text>
             </View>
           ) : (
             <SwipeableFlatlist allNotifications={this.state.allNotification} />
@@ -94,9 +86,5 @@ const styles = StyleSheet.create({
     flex: 1,
     justifyContent: "center",
     alignItems: "center",
-  },
-  LiTitle: {
-    color: "black",
-    fontWeight: "bold",
   },
 });

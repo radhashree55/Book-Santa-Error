@@ -6,13 +6,11 @@ import {
   Text,
   FlatList,
   TouchableOpacity,
-  Image,
 } from "react-native";
 import { ListItem } from "react-native-elements";
 import firebase from "firebase";
 import db from "../config";
 import MyHeader from "../components/MyHeader";
-import { RFValue } from "react-native-responsive-fontsize";
 
 export default class BookDonateScreen extends Component {
   constructor() {
@@ -104,6 +102,6 @@ const styles = StyleSheet.create({
   },
   view: {
     flex: 1,
-    backgroundColor: "#fff",
+    backgroundColor: "#deeeed",
   },
 });

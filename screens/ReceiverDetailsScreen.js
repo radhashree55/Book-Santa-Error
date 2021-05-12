@@ -1,40 +1,39 @@
 import React, { Component } from "react";
 import { View, Text, StyleSheet, TouchableOpacity, Image } from "react-native";
-import { Card, Header, Icon } from "react-native-elements";
+import { Header, Icon } from "react-native-elements";
 import firebase from "firebase";
 import db from "../config.js";
 import { RFValue } from "react-native-responsive-fontsize";
 
-export default class RecieverDetailsScreen extends Component {
+export default class ReceiverDetailsScreen extends Component {
   constructor(props) {
     super(props);
     this.state = {
       userId: firebase.auth().currentUser.email,
       userName: "",
-      recieverId: this.props.navigation.getParam("details")["user_id"],
+      receiverId: this.props.navigation.getParam("details")["user_id"],
       requestId: this.props.navigation.getParam("details")["request_id"],
       bookName: this.props.navigation.getParam("details")["book_name"],
       bookImage: "#",
-      reason_for_requesting: this.props.navigation.getParam("details")[
-        "reason_to_request"
-      ],
-      recieverName: "",
-      recieverContact: "",
-      recieverAddress: "",
-      recieverRequestDocId: "",
+      reason_for_requesting:
+        this.props.navigation.getParam("details")["reason_to_request"],
+      receiverName: "",
+      receiverContact: "",
+      receiverAddress: "",
+      receiverRequestDocId: "",
     };
   }
 
-  getRecieverDetails() {
+  getReceiverDetails() {
     db.collection("users")
-      .where("email_id", "==", this.state.recieverId)
+      .where("email_id", "==", this.state.receiverId)
       .get()
       .then((snapshot) => {
         snapshot.forEach((doc) => {
           this.setState({
-            recieverName: doc.data().first_name,
-            recieverContact: doc.data().contact,
-            recieverAddress: doc.data().address,
+            receiverName: doc.data().first_name,
+            receiverContact: doc.data().contact,
+            receiverAddress: doc.data().address,
           });
         });
       });
@@ -44,7 +43,7 @@ export default class RecieverDetailsScreen extends Component {
       .get()
       .then((snapshot) => {
         snapshot.forEach((doc) => {
-          this.setState({ recieverRequestDocId: doc.id });
+          this.setState({ receiverRequestDocId: doc.id });
         });
       });
   }
@@ -66,7 +65,7 @@ export default class RecieverDetailsScreen extends Component {
     db.collection("all_donations").add({
       book_name: this.state.bookName,
       request_id: this.state.requestId,
-      requested_by: this.state.recieverName,
+      requested_by: this.state.receiverName,
       donor_id: this.state.userId,
       request_status: "Donor Interested",
     });
@@ -76,7 +75,7 @@ export default class RecieverDetailsScreen extends Component {
     var message =
       this.state.userName + " has shown interest in Donating the book";
     db.collection("all_notifications").add({
-      targeted_user_id: this.state.recieverId,
+      targeted_user_id: this.state.receiverId,
       donor_id: this.state.userId,
       request_id: this.state.requestId,
       book_name: this.state.bookName,
@@ -87,7 +86,7 @@ export default class RecieverDetailsScreen extends Component {
   };
 
   componentDidMount() {
-    this.getRecieverDetails();
+    this.getReceiverDetails();
     this.getUserDetails(this.state.userId);
   }
 
@@ -108,8 +107,9 @@ export default class RecieverDetailsScreen extends Component {
               text: "Donate Books",
               style: {
                 color: "#ffffff",
-                fontSize: RFValue(20),
+                fontSize: RFValue(25),
                 fontWeight: "bold",
+                marginTop: RFValue(-10),
               },
             }}
             backgroundColor="#32867d"
@@ -118,10 +118,8 @@ export default class RecieverDetailsScreen extends Component {
         <View style={{ flex: 0.9 }}>
           <View
             style={{
-              flex: 0.3,
-              flexDirection: "row",
-              paddingTop: RFValue(30),
-              paddingLeft: RFValue(10),
+              flex: 0.9,
+              marginTop: RFValue(-300),
             }}
           >
             <View style={{ flex: 0.4 }}>
@@ -143,8 +141,8 @@ export default class RecieverDetailsScreen extends Component {
             >
               <Text
                 style={{
-                  fontWeight: "500",
-                  fontSize: RFValue(25),
+                  fontWeight: "bold",
+                  fontSize: RFValue(27),
                   textAlign: "center",
                 }}
               >
@@ -155,7 +153,7 @@ export default class RecieverDetailsScreen extends Component {
                   fontWeight: "400",
                   fontSize: RFValue(15),
                   textAlign: "center",
-                  marginTop: RFValue(15),
+                  marginTop: RFValue(5),
                 }}
               >
                 {this.state.reason_for_requesting}
@@ -165,54 +163,54 @@ export default class RecieverDetailsScreen extends Component {
           <View
             style={{
               flex: 0.7,
-              padding: RFValue(20),
             }}
           >
             <View
               style={{
-                flex: 0.7,
-                justifyContent: "center",
+                flex: 0.5,
                 alignItems: "center",
-                marginTop: RFValue(50),
-                borderWidth: 1,
+                borderWidth: 5,
                 borderColor: "#deeedd",
-                padding: RFValue(10),
+                marginTop: 30,
               }}
             >
               <Text
                 style={{
-                  fontWeight: "500",
-                  fontSize: RFValue(30),
+                  fontWeight: "bold",
+                  fontSize: RFValue(24),
                 }}
               >
-                Reciever Information
+                Receiver's Information
               </Text>
               <Text
                 style={{
                   fontWeight: "400",
                   fontSize: RFValue(20),
-                  marginTop: RFValue(30),
+                  marginTop: RFValue(15),
+                  alignSelf: "flex-start",
                 }}
               >
-                Name : {this.state.recieverName}
+                Name: {this.state.receiverName}
               </Text>
               <Text
                 style={{
                   fontWeight: "400",
                   fontSize: RFValue(20),
-                  marginTop: RFValue(30),
+                  marginTop: RFValue(15),
+                  alignSelf: "flex-start",
                 }}
               >
-                Contact: {this.state.recieverContact}
+                Contact: {this.state.receiverContact}
               </Text>
               <Text
                 style={{
                   fontWeight: "400",
                   fontSize: RFValue(20),
-                  marginTop: RFValue(30),
+                  marginTop: RFValue(15),
+                  alignSelf: "flex-start",
                 }}
               >
-                Address: {this.state.recieverAddress}
+                Address: {this.state.receiverAddress}
               </Text>
             </View>
             <View
@@ -222,7 +220,7 @@ export default class RecieverDetailsScreen extends Component {
                 alignItems: "center",
               }}
             >
-              {this.state.recieverId !== this.state.userId ? (
+              {this.state.receiverId !== this.state.userId ? (
                 <TouchableOpacity
                   style={styles.button}
                   onPress={() => {
@@ -231,7 +229,9 @@ export default class RecieverDetailsScreen extends Component {
                     this.props.navigation.navigate("MyDonations");
                   }}
                 >
-                  <Text>I want to Donate</Text>
+                  <Text style={{ fontWeight: "bold", fontSize: RFValue(20) }}>
+                    Donate
+                  </Text>
                 </TouchableOpacity>
               ) : null}
             </View>
@@ -252,17 +252,17 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   button: {
-    width: "75%",
-    height: RFValue(60),
+    width: "65%",
+    height: RFValue(40),
     justifyContent: "center",
     alignItems: "center",
-    borderRadius: RFValue(60),
-    backgroundColor: "#ff5722",
+    borderRadius: RFValue(20),
+    backgroundColor: "#32867d",
     shadowColor: "#000",
     shadowOffset: {
       width: 0,
       height: 8,
     },
-    elevation: 16,
+    elevation: 20,
   },
 });

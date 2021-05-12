@@ -1,34 +1,29 @@
 import React, { Component } from "react";
-import {
-  StyleSheet,
-  View,
-  Text,
-  TouchableOpacity,
-  ImageBackground,
-  Platform,
-} from "react-native";
+import { StyleSheet, View, Text, TouchableOpacity } from "react-native";
 import { DrawerItems } from "react-navigation-drawer";
 import { Avatar } from "react-native-elements";
 import * as ImagePicker from "expo-image-picker";
-import * as Permissions from "expo-permissions";
 import firebase from "firebase";
 import db from "../config";
 import { Icon } from "react-native-elements";
 import { RFValue } from "react-native-responsive-fontsize";
 
 export default class CustomSideBarMenu extends Component {
-  state = {
-    userId: firebase.auth().currentUser.email,
-    image: "#",
-    name: "",
-    docId: "",
-  };
+  constructor() {
+    super();
+    this.state = {
+      userId: firebase.auth().currentUser.email,
+      image: "#",
+      name: "",
+      docId: "",
+    };
+  }
 
   selectPicture = async () => {
     const { cancelled, uri } = await ImagePicker.launchImageLibraryAsync({
       mediaTypes: ImagePicker.MediaTypeOptions.All,
       allowsEditing: true,
-      aspect: [4, 3],
+      aspect: [8, 8],
       quality: 1,
     });
 

@@ -3,11 +3,10 @@ import {
   View,
   Text,
   TouchableOpacity,
-  ScrollView,
   FlatList,
   StyleSheet,
 } from "react-native";
-import { Card, Icon, ListItem } from "react-native-elements";
+import { Icon, ListItem } from "react-native-elements";
 import MyHeader from "../components/MyHeader.js";
 import firebase from "firebase";
 import db from "../config.js";
@@ -101,7 +100,7 @@ export default class MyDonationScreen extends Component {
   renderItem = ({ item, i }) => (
     <TouchableOpacity>
       <ListItem key={i} bottomDivider>
-        <Icon name="book" type="font-awesome" color="#696969" size={30} />
+        <Icon name="book" type="font-awesome" color="#696969" size={40} />
 
         <ListItem.Content>
           <ListItem.Title style={{ fontSize: 20, fontWeight: "bold" }}>
@@ -131,7 +130,7 @@ export default class MyDonationScreen extends Component {
     return (
       <View style={{ flex: 1 }}>
         <MyHeader navigation={this.props.navigation} title="My Donations" />
-        <View style={{ flex: 1 }}>
+        <View style={{ flex: 1, backgroundColor: "#deeeed" }}>
           {this.state.allDonations.length === 0 ? (
             <View style={styles.subtitle}>
               <Text style={{ fontSize: 20 }}>List of all Book Donations</Text>
@@ -151,14 +150,15 @@ export default class MyDonationScreen extends Component {
 
 const styles = StyleSheet.create({
   button: {
-    width: 90,
+    width: "55%",
     height: 25,
     justifyContent: "center",
     alignItems: "center",
-    backgroundColor: "#ff5722",
+    backgroundColor: "#32867d",
     shadowColor: "#000",
     textAlign: "center",
     fontWeight: "bold",
+    color: "white",
     shadowOffset: {
       width: 0,
       height: 8,
@@ -170,5 +170,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     justifyContent: "center",
     alignItems: "center",
+    backgroundColor: "#deeeed",
   },
 });

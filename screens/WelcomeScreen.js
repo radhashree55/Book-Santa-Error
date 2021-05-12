@@ -5,18 +5,13 @@ import {
   TextInput,
   Image,
   Modal,
-  KeyboardAvoidingView,
   StyleSheet,
   TouchableOpacity,
   Alert,
   ScrollView,
 } from "react-native";
-
-import SantaAnimation from "../components/SantaClaus.js";
 import db from "../config";
 import firebase from "firebase";
-
-import { Icon } from "react-native-elements";
 import { RFValue } from "react-native-responsive-fontsize";
 
 export default class WelcomeScreen extends Component {
@@ -96,7 +91,6 @@ export default class WelcomeScreen extends Component {
             <TextInput
               style={styles.formInput}
               placeholder={"First Name"}
-              maxLength={12}
               onChangeText={(text) => {
                 this.setState({
                   firstName: text,
@@ -108,7 +102,6 @@ export default class WelcomeScreen extends Component {
             <TextInput
               style={styles.formInput}
               placeholder={"Last Name"}
-              maxLength={12}
               onChangeText={(text) => {
                 this.setState({
                   lastName: text,
@@ -168,7 +161,7 @@ export default class WelcomeScreen extends Component {
             <Text style={styles.label}>Confirm Password</Text>
             <TextInput
               style={styles.formInput}
-              placeholder={"Confrim Password"}
+              placeholder={"Confirm Password"}
               secureTextEntry={true}
               onChangeText={(text) => {
                 this.setState({
@@ -221,8 +214,8 @@ export default class WelcomeScreen extends Component {
           <View style={styles.TextInput}>
             <TextInput
               style={styles.loginBox}
-              placeholder="abc@example.com"
-              placeholderTextColor="gray"
+              placeholder="Username"
+              placeholderTextColor="black"
               keyboardType="email-address"
               onChangeText={(text) => {
                 this.setState({
@@ -233,8 +226,8 @@ export default class WelcomeScreen extends Component {
             <TextInput
               style={[styles.loginBox, { marginTop: RFValue(15) }]}
               secureTextEntry={true}
-              placeholder="Enter Password"
-              placeholderTextColor="gray"
+              placeholder="Password"
+              placeholderTextColor="black"
               onChangeText={(text) => {
                 this.setState({
                   password: text,

@@ -2,19 +2,16 @@ import React, { Component } from "react";
 import {
   View,
   Text,
-  KeyboardAvoidingView,
   StyleSheet,
   TouchableOpacity,
-  ScrollView,
   FlatList,
-  TouchableHighlight,
   Alert,
   Image,
 } from "react-native";
 import db from "../config";
 import firebase from "firebase";
 import { RFValue } from "react-native-responsive-fontsize";
-import { SearchBar, ListItem, Input } from "react-native-elements";
+import { ListItem, Input } from "react-native-elements";
 
 import MyHeader from "../components/MyHeader";
 import { BookSearch } from "react-native-google-books";
@@ -266,14 +263,14 @@ export default class BookRequestScreen extends Component {
                 this.receivedBooks(this.state.requestedBookName);
               }}
             >
-              <Text style={styles.buttontxt}>Book Recived</Text>
+              <Text style={styles.buttontxt}>Book Received</Text>
             </TouchableOpacity>
           </View>
         </View>
       );
     }
     return (
-      <View style={{ flex: 1 }}>
+      <View style={{ flex: 1, backgroundColor: "#deeeed" }}>
         <View style={{ flex: 0.1 }}>
           <MyHeader title="Request Book" navigation={this.props.navigation} />
         </View>
@@ -292,7 +289,6 @@ export default class BookRequestScreen extends Component {
               data={this.state.dataSource}
               renderItem={this.renderItem}
               enableEmptySections={true}
-              style={{ marginTop: RFValue(10) }}
               keyExtractor={(item, index) => index.toString()}
             />
           ) : (
@@ -301,9 +297,8 @@ export default class BookRequestScreen extends Component {
                 style={styles.formTextInput}
                 containerStyle={{ marginTop: RFValue(30) }}
                 multiline
-                numberOfLines={8}
                 label={"Reason"}
-                placeholder={"Why do you need the book"}
+                placeholder={"Reason for Requesting"}
                 onChangeText={(text) => {
                   this.setState({
                     reasonToRequest: text,
@@ -338,9 +333,10 @@ const styles = StyleSheet.create({
   },
   formTextInput: {
     width: "75%",
-    height: RFValue(35),
+    height: RFValue(45),
     borderWidth: 1,
     padding: 10,
+    backgroundColor: "white",
   },
   ImageView: {
     flex: 0.3,
@@ -382,7 +378,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   buttontxt: {
-    fontSize: RFValue(18),
+    fontSize: RFValue(20),
     fontWeight: "bold",
     color: "#fff",
   },
@@ -399,7 +395,7 @@ const styles = StyleSheet.create({
   },
   button: {
     width: "75%",
-    height: RFValue(60),
+    height: RFValue(50),
     justifyContent: "center",
     alignItems: "center",
     borderRadius: RFValue(50),
